@@ -1,7 +1,7 @@
 var config = require('./config.js');
 var mongoose = require('mongoose');
 
-var DB_URI = 'mongodb://' + config.auth + config.host + ':' + config.port + '/' + config.name;
+var DB_URI = 'mongodb://' + config.db.auth + config.db.host + ':' + config.db.port + '/' + config.db.name;
 mongoose.connect(DB_URI);
 
 var db = mongoose.connection;
@@ -13,7 +13,7 @@ db.once('open', function() {
 var chatSchema = mongoose.Schema({
   sender: String,
   receiver: String,
-  type: Number, // 0: message, 1: image
+  type: Number,
   content: String,
   date: {
     type: Date,
@@ -24,13 +24,13 @@ var Chat = mongoose.model('Chat', chatSchema);
 
 function addMessage(data) {
   var chat = new Chat(data);
-  console.log('save chat', chat);
+  console.log('before save chat', chat);
 
   chat.save(function(err) {
     if (err) {
       console.log(err);
     } else {
-      console.log('success');
+      console.log('saved');
     }
   });
 }

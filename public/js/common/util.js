@@ -1,4 +1,7 @@
-var socket = io('ws://localhost:3000');
+import { HOST, PORT } from './config';
+
+var url = 'ws://' + HOST + ':' + PORT;
+var socket = io(url);
 
 // 连接服务器
 socket.on('connect', function() {

@@ -1,7 +1,7 @@
-var PORT = 3000;
-
-var io = require('socket.io')(PORT);
+var config = require('./server/config.js');
 var db = require('./server/db.js');
+var io = require('socket.io')(config.server.port);
+var chatType = config.chatType;
 var users = [];
 var conns = {};
 
@@ -13,23 +13,26 @@ function toEmit(socket, type, someone, data) {
     if (username) {
       io.sockets.connected[socketId].emit(type, username, data);
 
+      var data = {
+        sender: username,
+        receiver: someone,
+        type: chatType.message,
+        content: data
+      };
+
       switch (type) {
-        case 'message':
-          console.log('[sendMessage]Received message: ' + username + ' to ' + someone + ' say ' + data);
-          // insert
-          var data = {
-            sender: username,
-            receiver: someone,
-            type: 0,
-            content: data
-          };
-          db.addMessage(data);
-          break;
         case 'image':
           console.log('[sendImage]Received image: ' + username + ' to ' + someone + ' a pic');
-          // save image
+          data.type = chatType.image;
+          data.content = ''; // TODO: save image
+          break;
+        default: // message
+          console.log('[sendMessage]Received message: ' + username + ' to ' + someone + ' say ' + data);
           break;
       }
+
+      // insert db
+      db.addMessage(data);
     } else {
       console.log(username + ' unlogin');
     }
