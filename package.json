@@ -1,0 +1,17 @@
+{
+  "name": "simple-chat",
+  "version": "1.0.0",
+  "description": "Simple Chat",
+  "author": "Elf-mousE",
+  "dependencies": {
+    "mongoose": "^4.4.19",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {
+    "rollup": "^0.26.3"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "rollup -c"
+  }
+}

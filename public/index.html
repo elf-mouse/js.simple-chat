@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple Chat</title>
+  <link href="//cdn.bootcss.com/emojify.js/0.9.5/emojify-emoticons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="user-test">
+      <label>发送者（选择后先点击登录）</label>
+      <select id="user-a">
+        <option value="aaa" selected>A</option>
+        <option value="bbb">B</option>
+        <option value="ccc">C</option>
+        <option value="ddd">D</option>
+      </select> -->
+      <label>接收者</label>
+      <select id="user-b">
+        <option value="aaa">A</option>
+        <option value="bbb" selected>B</option>
+        <option value="ccc">C</option>
+        <option value="ddd">D</option>
+      </select>
+    </div>
+    <div id="history-message"></div>
+    <textarea id="message" placeholder="输入消息"></textarea>
+    <div class="controls">
+      <div class="items">
+        <input type="button" id="login" value="登录（测试）">
+        <input type="button" id="face" value="表情">
+        <label class="image-label" for="image">
+          <input type="button" value="图片">
+          <input type="file" id="image" value="图片">
+        </label>
+      </div>
+      <input type="button" id="send" value="发送">
+      <div id="emoji-wrapper"></div>
+    </div>
+  </div>
+  <script src="//cdn.bootcss.com/socket.io/1.4.6/socket.io.min.js"></script>
+  <script src="//cdn.bootcss.com/emojify.js/0.9.5/emojify.min.js"></script>
+  <script src="js/bundle.js"></script>
+</body>
+
+</html>
