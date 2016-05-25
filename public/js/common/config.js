@@ -1,7 +1,8 @@
-var HOST = '127.0.0.1';
-var PORT = 3000;
+var SERVER = {
+  host: '10.21.201.53',
+  port: 3000
+};
 
 export {
-  HOST,
-  PORT
+  SERVER
 };

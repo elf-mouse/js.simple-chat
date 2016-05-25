@@ -1,6 +1,6 @@
-import { HOST, PORT } from './config';
+import { SERVER } from './config';
 
-var url = 'ws://' + HOST + ':' + PORT;
+var url = 'ws://' + SERVER.host + ':' + SERVER.port;
 var socket = io(url);
 
 // 连接服务器
